@@ -85,7 +85,7 @@ bool parse_arguments(JNIEnv * env, jobject cli_args, rcl_arguments_t * arguments
 
 JNIEXPORT jlong JNICALL
 Java_org_ros2_rcljava_RCLJava_nativeCreateNodeHandle(
-  JNIEnv * env, jclass, jstring jnode_name, jstring jnamespace, jlong context_handle,
+  JNIEnv * env, jclass, jstring jnode_name, jstring jnamespace, jint domain_id, jlong context_handle,
   jobject cli_args, jboolean use_global_arguments, jboolean enable_rosout)
 {
   const char * node_name_tmp = env->GetStringUTFChars(jnode_name, 0);
@@ -113,6 +113,7 @@ Java_org_ros2_rcljava_RCLJava_nativeCreateNodeHandle(
   }
 
   rcl_node_options_t options = rcl_node_get_default_options();
+  options.domain_id = domain_id;
   options.use_global_arguments = use_global_arguments;
   options.arguments = arguments;
   options.enable_rosout = enable_rosout;

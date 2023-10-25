@@ -162,7 +162,7 @@ public final class RCLJava {
    * @param contextHandle Pointer to a context (rcl_context_t) with which to associated the node.
    * @return A pointer to the underlying ROS2 node structure.
    */
-  private static native long nativeCreateNodeHandle(String nodeName, String namespace, long contextHandle, ArrayList<String> arguments, boolean useGlobalArguments, boolean enableRosout);
+  private static native long nativeCreateNodeHandle(String nodeName, String namespace, int domain_id, long contextHandle, ArrayList<String> arguments, boolean useGlobalArguments, boolean enableRosout);
 
   /**
    * @return The identifier of the currently active RMW implementation via the
@@ -218,8 +218,8 @@ public final class RCLJava {
    * @return A @{link Node} that represents the underlying ROS2 node
    *     structure.
    */
-  public static Node createNode(final String nodeName) {
-    return createNode(nodeName, "", RCLJava.getDefaultContext(), new NodeOptions());
+  public static Node createNode(final String nodeName, final int domain_id) {
+    return createNode(nodeName, "", domain_id, RCLJava.getDefaultContext(), new NodeOptions());
   }
 
   /**
@@ -230,12 +230,12 @@ public final class RCLJava {
    * @return A @{link Node} that represents the underlying ROS2 node
    *     structure.
    */
-  public static Node createNode(final String nodeName, final String namespace, final Context context) {
-    return createNode(nodeName, namespace, context, new NodeOptions());
+  public static Node createNode(final String nodeName, final String namespace, final int domain_id, final Context context) {
+    return createNode(nodeName, namespace, domain_id, context, new NodeOptions());
   }
 
-  public static Node createNode(final String nodeName, final String namespace, final Context context, final NodeOptions options) {
-    long nodeHandle = nativeCreateNodeHandle(nodeName, namespace, context.getHandle(), options.getCliArgs(), options.getUseGlobalArguments(), options.getEnableRosout());
+  public static Node createNode(final String nodeName, final String namespace, final int domain_id, final Context context, final NodeOptions options) {
+    long nodeHandle = nativeCreateNodeHandle(nodeName, namespace, domain_id, context.getHandle(), options.getCliArgs(), options.getUseGlobalArguments(), options.getEnableRosout());
     Node node = new NodeImpl(nodeHandle, context, options.getAllowUndeclaredParameters());
     nodes.add(node);
     return node;
