@@ -137,9 +137,9 @@ public final class RCLJava {
    *   This also initializes the default context.
    */
   public static synchronized void rclJavaInit() {
-    rclJavaInit(0)
+    rclJavaInit(0);
   }
-  
+
   public static synchronized void rclJavaInit(int domain_id) {
     if (RCLJava.ok()) {
       return;
