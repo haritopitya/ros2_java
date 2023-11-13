@@ -113,7 +113,6 @@ Java_org_ros2_rcljava_RCLJava_nativeCreateNodeHandle(
   }
 
   rcl_node_options_t options = rcl_node_get_default_options();
-  options.domain_id = domain_id;
   options.use_global_arguments = use_global_arguments;
   options.arguments = arguments;
   options.enable_rosout = enable_rosout;

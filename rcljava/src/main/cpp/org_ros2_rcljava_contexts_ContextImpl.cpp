@@ -36,10 +36,12 @@ Java_org_ros2_rcljava_contexts_ContextImpl_nativeIsValid(JNIEnv *, jclass, jlong
 }
 
 JNIEXPORT void JNICALL
-Java_org_ros2_rcljava_contexts_ContextImpl_nativeInit(JNIEnv * env, jclass, jlong context_handle)
+Java_org_ros2_rcljava_contexts_ContextImpl_nativeInit(
+  JNIEnv * env, jclass, jlong context_handle, jsize domain_id)
 {
   // TODO(jacobperron): Encapsulate init options into a Java class
   rcl_init_options_t init_options = rcl_get_zero_initialized_init_options();
+  rcl_init_options_set_domain_id(&init_options, domain_id);
   rcl_ret_t ret = rcl_init_options_init(&init_options, rcl_get_default_allocator());
   if (RCL_RET_OK != ret) {
     std::string msg = "Failed to init context options: " + std::string(rcl_get_error_string().str);

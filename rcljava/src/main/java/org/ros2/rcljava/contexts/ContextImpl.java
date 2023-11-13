@@ -84,8 +84,8 @@ public class ContextImpl implements Context {
   /**
    * {@inheritDoc}
    */
-  public final void init() {
-    nativeInit(this.handle);
+  public final void init(int domain_id) {
+    nativeInit(this.handle,domain_id);
   }
 
   /**

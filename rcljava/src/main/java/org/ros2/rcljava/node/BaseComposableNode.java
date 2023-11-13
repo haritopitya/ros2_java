@@ -24,10 +24,9 @@ public class BaseComposableNode implements ComposableNode {
 
   protected final int domain_id;
 
-  public BaseComposableNode(String name, int domain_id) {
+  public BaseComposableNode(String name) {
     this.name = name;
-    this.domain_id = domain_id;
-    node = RCLJava.createNode(this.name,this.domain_id);
+    node = RCLJava.createNode(this.name);
   }
 
   public Node getNode() {
