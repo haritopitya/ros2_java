@@ -79,7 +79,7 @@ public class ContextImpl implements Context {
    *
    * @param contextHandle The pointer to the context structure.
    */
-  private static native void nativeInit(long contextHandle);
+  private static native void nativeInit(long contextHandle,int domain__id);
 
   /**
    * {@inheritDoc}
