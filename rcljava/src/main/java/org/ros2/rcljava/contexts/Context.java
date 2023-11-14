@@ -35,7 +35,7 @@ public interface Context extends Disposable {
    * // TODO(jacobperron): Pass arguments for parsing
    * // TODO(jacobperron): Pass in InitOptions object
    */
-  void init();
+  void init(int domain_id);
 
   /**
    * Shutdown the context.
