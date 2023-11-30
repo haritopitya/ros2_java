@@ -145,6 +145,10 @@ public final class RCLJava {
     //   return;
     // }
 
+    if(RCLJava.defaultContext!=null){
+      RCLJava.defaultContext.dispose();
+      RCLJava.defaultContext=null;
+    }
     // Initialize default context
     getDefaultContext().init(domain_id);
 
