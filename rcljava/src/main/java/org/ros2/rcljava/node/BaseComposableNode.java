@@ -16,15 +16,25 @@
 package org.ros2.rcljava.node;
 
 import org.ros2.rcljava.RCLJava;
+import org.ros2.rcljava.contexts.Context;
 
 public class BaseComposableNode implements ComposableNode {
   private final String name;
+
+  private final String namespace;
 
   protected final Node node;
 
   public BaseComposableNode(String name) {
     this.name = name;
+    this.namespace = "";
     node = RCLJava.createNode(this.name);
+  }
+
+  public BaseComposableNode(String name, String namespace, Context context) {
+    this.name = name;
+    this.namespace = namespace;
+    node = RCLJava.createNode(this.name, this.namespace, context);
   }
 
   public Node getNode() {
